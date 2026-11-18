@@ -1,0 +1,37 @@
+
+# Autor: Diego Fuentes
+# Fecha: 10/11/2026
+# Tema: Estacionamiento
+espacios = 50
+while True:
+    print("\nBienvenido al estacionamiento")
+    print("1. Consultar espacios disponibles")
+    print("2. Ingresar vehículo")
+    print("3. Retirar vehículo")
+    print("4. Salir")
+
+    opcion = int(input("Seleccione una opción: "))
+
+    if opcion == 1:
+        print("******************************")
+        print("Espacios disponibles:", espacios)
+        print("******************************")
+    elif opcion == 2:
+        if espacios > 0:
+            espacios = espacios - 1
+            print("Vehículo ingresado correctamente")
+            print("Espacios disponibles:", espacios)
+        else:
+            print("El estacionamiento está lleno")
+    elif opcion == 3:
+        if espacios < 50:
+            espacios = espacios + 1
+            print("Vehículo retirado correctamente")
+            print("Espacios disponibles:", espacios)
+        else:
+            print("No hay vehículos en el estacionamiento")
+    elif opcion == 4:
+        print("Gracias por usar el estacionamiento")
+        break
+    else:
+        print("Opción no válida, intente nuevamente")
