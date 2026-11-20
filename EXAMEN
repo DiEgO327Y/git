@@ -1,0 +1,90 @@
+#AUTOR: Diego Fuentes
+#FECHA:19/11/2026
+#TEMA: Examen
+#GENERAR UN SISTEMA PARA UN CINE QUE PERMITA VENDER ENTRADAS A DIFERENTES TIPOS DE ESPECTADORESCONTROLAR 
+#LA DISPONIBILIDAD DE ASIENTOS Y REGISTRAR EL DINERO RECAUDADO 
+#DEBE TENER: 1 COMPRAR ENTRADAS, 2 CONSULTAR ASIENTO, 3 CONSULTAR ENTRADS VENDIDAS 4, CONSULTAR RECAUSACION, 5 SALIR 
+#ADULTO:5, NIÑO:3, TERCERA EDAD:2,5 
+#VERIFICAR EL NUMERO DE ENTRADAS SEA MAYOR QUE 0 Y QUE NO SUPERE LOS ASIENTOS DISPONIBLES
+#CARCULAR Y MOSTRAR EL TOTAL DE COMPRAS
+#DESCONTAR EL TOTAL DE ASIENTOS DISPONIBLES DE LAS ENTRADS
+#ACUMULAR EL DINERO RECAUDADO 
+
+TOTAL_ASIENTOS = 50
+asientos = [False] * TOTAL_ASIENTOS
+precio_adulto = 5.00
+precio_nino = 3.00
+precio_tercera_edad = 2.50
+recaudacion = 0
+entradas_vendidas = 0
+# COMPRAR ENTRADAS
+def comprar_entradas():
+    global recaudacion, entradas_vendidas
+    print("\n COMPRAR ENTRADAS")
+    print("1. Adulto - $5.00")
+    print("2. Niño - $3.00")
+    print("3. Tercera edad - $2.50")
+    tipo = int(input("Seleccione el tipo de entrada: "))
+    if tipo == 1:
+        precio = precio_adulto = 5.00
+        nombre = "Adulto"
+    elif tipo == 2:
+        precio = 3.00
+        nombre = "Niño"
+    elif tipo == 3:
+        precio = 2.50
+        nombre = "Tercera edad"
+    else:
+        print("Tipo de entrada no válido.")
+        return
+    asiento = int(input("Seleccione el número de asiento (1-50): "))
+    if asiento < 1 or asiento > TOTAL_ASIENTOS:
+        print("Número de asiento inválido.")
+        return
+    if asientos[asiento - 1]:
+        print("Este asiento ya está ocupado.")
+        return
+    asientos[asiento - 1] = True
+    recaudacion += precio
+    entradas_vendidas += 1
+    print("\n¡Compra realizada correctamente!")
+    print("Tipo de entrada:", nombre)
+    print("Asiento:", asiento)
+    print("Precio: $", precio)
+# CONSULTAR NUMERO DE ASIENTOS DISPONIBLES
+def consultar_disponibles():
+    disponibles = asientos.count(False)
+    print("\nASIENTOS DISPONIBLES")
+    print("Total de asientos:", TOTAL_ASIENTOS)
+    print("Asientos disponibles:", disponibles)
+    print("Asientos ocupados:", TOTAL_ASIENTOS - disponibles)
+# CONSULTAR ENTRADS VENDIDAS
+def consultar_vendidas():
+    print("\nENTRADAS VENDIDAS")
+    print("Entradas vendidas:", entradas_vendidas)
+# CONSULTAR RECAUDACION 
+def consultar_recaudacion():
+    print("\nRECAUDACIÓN TOTAL")
+    print("Dinero recaudado: $", round(recaudacion, 2))
+# MENU PRINCIPAL
+while True:
+    print("CINE UTC  SISTEMA DE ENTRADAS")
+    print("1. Comprar entradas")
+    print("2. Consultar asientos disponibles")
+    print("3. Consultar entradas vendidas")
+    print("4. Consultar recaudación total")
+    print("5. Salir")
+    opcion = input("\nSeleccione una opción: ")
+    if opcion == "1":
+        comprar_entradas()
+    elif opcion == "2":
+        consultar_disponibles()
+    elif opcion == "3":
+        consultar_vendidas()
+    elif opcion == "4":
+        consultar_recaudacion()
+    elif opcion == "5":
+        print("\nGracias por utilizar el sistema CINE UTC.")
+        break
+    else:
+        print("Opción incorrecta. Intente nuevamente.")
